@@ -27,91 +27,14 @@ open the file using nano file
 for backend edit this:
 
 apiVersion: apps/v1
-kind: Deployment
-metadata:
-  name: sample-backend-production
+
 spec:
   selector:
    matchLabels:
     app: sample
-  replicas: 2
-  template:
-    metadata:
-      name: backend
-      labels:
-        app: sample
-        role: backend
-        env: production
-    spec:
-      containers:
-      - name: backend
-        image: gcr.io/qwiklabs-resources/sample-app:v1.0.0
-        resources:
-          limits:
-            memory: "500Mi"
-            cpu: "100m"
-        imagePullPolicy: Always
-        readinessProbe:
-          httpGet:
-            path: /health
-            port: 8080
-        env:
-        - name: COMPONENT
-          value: backend
-        - name: VERSION
-          value: production
-        ports:
-        - name: backend
-          containerPort: 8080
-
-
-
-
-for frontend:
-
-
-
-apiVersion: apps/v1
-kind: Deployment
-metadata:
-  name: sample-frontend-production
-spec:
-  selector:
-    matchLabels:
-     app: sample
-  replicas: 2
-  template:
-    metadata:
-      name: frontend
-      labels:
-        app: sample
-        role: frontend
-        env: production
-    spec:
-      containers:
-      - name: frontend
-        image: gcr.io/qwiklabs-resources/sample-app:v1.0.0
-        resources:
-          limits:
-            memory: "500Mi"
-            cpu: "100m"
-        imagePullPolicy: Always
-        readinessProbe:
-          httpGet:
-            path: /health
-            port: 8080
-        env:
-        - name: COMPONENT
-          value: frontend
-        - name: BACKEND_URL
-          value: http://sample-backend-production:8080/metadata
-        - name: VERSION
-          value: production
-        ports:
+  
         
-        
-
-
+       
 gcloud config set compute/zone us-east1-b
 
 gcloud compute instances create kraken-admin --network-interface="subnet=kraken-mgmt-subnet" --network-interface="subnet=kraken-prod-subnet"
