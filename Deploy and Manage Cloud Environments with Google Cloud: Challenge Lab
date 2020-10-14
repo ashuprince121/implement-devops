@@ -119,7 +119,8 @@ gcloud compute instances create kraken-admin --network-interface="subnet=kraken-
 
 gcloud config set compute/zone us-east1-b
 
-gcloud container clusters create spinnaker-tutorial
+gcloud container clusters get-credentials spinnaker-tutorial
+
        
 export DECK_POD=$(kubectl get pods --namespace default -l "cluster=spin-deck" \
     -o jsonpath="{.items[0].metadata.name}")
