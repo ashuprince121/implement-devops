@@ -47,12 +47,16 @@ gcloud config set compute/zone us-east1-b
 gcloud container clusters get-credentials spinnaker-tutorial
 
 
+//Part 2. 
+
 
 DECK_POD=$(kubectl get pods --namespace default -l "cluster=spin-deck" \     
     -o jsonpath="{.items[0].metadata.name}")
     
 kubectl port-forward --namespace default $DECK_POD 8080:9000 >> /dev/null &
 
+
+//Fixing error
 
 gcloud container clusters create spinnaker-tutorial \
     --machine-type=n1-standard-2
@@ -108,6 +112,7 @@ export PROJECT=$(gcloud info \
 export BUCKET=$PROJECT-spinnaker-config
 
 gsutil mb -c regional -l us-east1 gs://$BUCKET
+
 
 
 export SA_JSON=$(cat spinnaker-sa.json)
@@ -190,12 +195,15 @@ git remote add origin https://source.developers.google.com/p/$PROJECT/r/sample-a
 git push origin master
 
 
+
+///////////////////////////////////////
 Navigation Menu > Source Repositories.
 
 View All Repositories
 
 sample-app. 
 
+////////////////////////////////////////////////////
 
 Navigation menu > Cloud Build > Triggers.
 
@@ -215,7 +223,11 @@ Build configuration:   Cloud Build configuration file (yaml or json)
 Cloud Build configuration file location:   /cloudbuild.yaml
 
 
-create
+then create
+
+//////////////////////////////////////////////////////////////
+//after this run next line
+
 
 
 
@@ -252,10 +264,11 @@ sed s/PROJECT/$PROJECT/g spinnaker/pipeline-deploy.json > pipeline.json
 
 
 
+//////////////////////////////
 
-Start Manual Execution
+///Start Manual Execution
 
-
+///////////////////////////////
 
 
 sed -i 's/orange/blue/g' cmd/gke-info/common-service.go
@@ -281,7 +294,7 @@ git push --tags
 
 
 
-Run this command if you still get error:
+////Run this command if you still get error:
 
 
 gcloud config set compute/zone us-east1-b
