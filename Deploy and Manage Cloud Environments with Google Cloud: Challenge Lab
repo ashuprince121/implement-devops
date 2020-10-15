@@ -48,7 +48,7 @@ gcloud container clusters get-credentials spinnaker-tutorial
 
 
 
-DECK_POD=$(kubectl get pods --namespace default -l "cluster=spin-deck" \      Error part
+DECK_POD=$(kubectl get pods --namespace default -l "cluster=spin-deck" \     
     -o jsonpath="{.items[0].metadata.name}")
     
 kubectl port-forward --namespace default $DECK_POD 8080:9000 >> /dev/null &
