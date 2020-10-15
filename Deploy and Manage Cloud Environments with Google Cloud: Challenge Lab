@@ -281,11 +281,7 @@ git push --tags
 
 
 
-
-
-
-
-
+Run this command if you still get error:
 
 
 gcloud config set compute/zone us-east1-b
